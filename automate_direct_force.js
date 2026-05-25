@@ -4,9 +4,9 @@ const path = require('path');
 const fs = require('fs');
 
 const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const REAL_USER_DATA = 'C:\\Users\\gytw2\\AppData\\Local\\Google\\Chrome\\User Data';
+const REAL_USER_DATA = path.join(process.env.USERPROFILE, 'AppData', 'Local', 'Google', 'Chrome', 'User Data');
 const DEVPOST_URL = 'https://devpost.com/submit-to/29541-build-with-gemini-xprize/manage/submissions/1030063-brain_train/project-overview';
-const SCRATCH_DIR = 'C:\\Users\\gytw2\\.gemini\\antigravity\\brain\\569f8ba8-cd13-4e9e-a6a2-a987f3c299fb\\scratch';
+const SCRATCH_DIR = path.join(process.env.USERPROFILE, '.gemini', 'antigravity', 'brain', '569f8ba8-cd13-4e9e-a6a2-a987f3c299fb', 'scratch');
 
 if (!fs.existsSync(SCRATCH_DIR)) {
   fs.mkdirSync(SCRATCH_DIR, { recursive: true });
