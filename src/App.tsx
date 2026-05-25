@@ -67,7 +67,7 @@ export default function App() {
 
   // Navigation and play state routing
   const [currentView, setCurrentView] = useState<'home' | 'game-select' | 'game-play' | 'brain-test' | 'guide'>('home');
-  const [guideTab, setGuideTab] = useState<'manual' | 'prescription'>('manual');
+  const [guideTab, setGuideTab] = useState<'manual' | 'advice'>('manual');
   const [activePlayType, setActivePlayType] = useState<GameType | null>(null);
 
   // Brain Age Test Flow controllers
@@ -381,7 +381,7 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-md font-black tracking-tight leading-none text-white">매일매일 두뇌 학당</h1>
-              <p className="text-[9px] text-indigo-200 font-semibold leading-none mt-1">Nintendo Style 인지치료실</p>
+              <p className="text-[9px] text-indigo-200 font-semibold leading-none mt-1">Nintendo Style 두뇌 트레이닝 교실</p>
             </div>
           </button>
 
@@ -773,7 +773,7 @@ export default function App() {
                             audio.playClick();
                             setTestStep('intro');
                             setCurrentView('guide');
-                            setGuideTab('prescription');
+                            setGuideTab('advice');
                             loadAiAdvice();
                           }}
                           className="flex-1 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-black shadow-md cursor-pointer transition"
@@ -823,14 +823,14 @@ export default function App() {
                     </button>
                     <button
                       type="button"
-                      id="tab-guide-prescription"
+                      id="tab-guide-advice"
                       onClick={() => {
                         audio.playClick();
-                        setGuideTab('prescription');
+                        setGuideTab('advice');
                         loadAiAdvice();
                       }}
                       className={`flex-1 py-1 px-1 text-xs font-black rounded-lg transition-all cursor-pointer ${
-                        guideTab === 'prescription'
+                        guideTab === 'advice'
                           ? 'bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-indigo-650 dark:text-indigo-400 shadow-3xs'
                           : 'text-slate-500 dark:text-zinc-400'
                       }`}
@@ -858,9 +858,9 @@ export default function App() {
                     </div>
                   )}
 
-                  {guideTab === 'prescription' && userStats.brainAgeHistory.length === 0 && (
+                  {guideTab === 'advice' && userStats.brainAgeHistory.length === 0 && (
                     <div className="text-center py-6 px-3 bg-indigo-50/40 dark:bg-indigo-950/15 rounded-2xl border border-indigo-100 dark:border-indigo-950/40 space-y-3">
-                      <span className="text-3xl block">🩺</span>
+                      <span className="text-3xl block">🧠</span>
                       <h4 className="text-sm font-black text-indigo-900 dark:text-indigo-300">종합 검사 기록이 필요합니다</h4>
                       <p className="text-xs text-slate-500 dark:text-zinc-400 leading-relaxed max-w-sm mx-auto">
                         {userName || '사용자'} 님의 두뇌 연령 성적표가 아직 존재하지 않습니다. 메인 대시보드에서 <strong>[두뇌 연령 테스트]</strong>를 1회 완료하시면, 사용자의 인지 반응 속도를 분석하여 1:1 맞춤 식단 및 취약 기력 보강행동 지침을 자동으로 생성해 드립니다!
@@ -879,12 +879,12 @@ export default function App() {
                     </div>
                   )}
 
-                  {guideTab === 'prescription' && userStats.brainAgeHistory.length > 0 && (
+                  {guideTab === 'advice' && userStats.brainAgeHistory.length > 0 && (
                     isLoadingAdvice ? (
                       <div className="text-center py-12 space-y-4">
                         <RefreshCw className="w-10 h-10 text-indigo-600 animate-spin mx-auto" />
                         <h4 className="text-lg font-black text-slate-800 dark:text-zinc-100">AI 두뇌 조언 작성 중...</h4>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">어르신의 인지 성과 비율을 토대로 실천 처방을 정성껏 작성 중입니다. 조금만 가만히 기다려 주십시오!</p>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">어르신의 인지 성과 비율을 토대로 맞춤 조언을 정성껏 작성 중입니다. 조금만 가만히 기다려 주십시오!</p>
                       </div>
                     ) : (() => {
                       const latestRecord = userStats.brainAgeHistory[userStats.brainAgeHistory.length - 1];
@@ -903,7 +903,7 @@ export default function App() {
                         minScore = seqScore;
                       }
 
-                      // Prescription dynamic configuration
+                      // Advice dynamic configuration
                       const fallbackConfig = weakestArea === 'MATH' ? {
                         areaName: '수리 판단 피질 및 순간 연산 속도',
                         detail: '[집중보완 키워드]: 수리 사칙연산 제어 속도 저조. 전두엽 산소 보완이 시급히 필요합니다.',
