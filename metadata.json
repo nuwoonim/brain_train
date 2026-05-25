@@ -1,0 +1,6 @@
+{
+  "name": "매일매일 두뇌 트레이닝",
+  "description": "치매 예방과 인지 건강을 위한 모바일 스타일의 두뇌 트레이닝 게임 모음입니다. 스트룹 테스트, 계산 20, 숫자 순서 기억, 순간 암기 게임과 두뇌 연령 측정, 그리고 출석 달력 스탬프 기능을 지원합니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
